@@ -98,7 +98,7 @@ Student::~Student()
 	//Student() doesn't call new So destructor doesn't have anything to free. BUT...it's still here.
 }
 //Derived class for art students
-Class Art_Student:public Student
+class Art_Student:public Student
 {
 	private:
 		string emphasis;
@@ -111,7 +111,7 @@ Class Art_Student:public Student
 		{
 			//again nothing, this memory goes back to heap. string emphasis manages itself. 
 		}
-		void setemphasis(string e)
+		void setemphasis(string e) //both derived classes get a setter and getter for their unique fields
 		{
 			if(e == "Art Studio" || e == "Art History" || e == "Art Education")
 			{
@@ -126,7 +126,7 @@ Class Art_Student:public Student
 		}
 };
 //Derived class for physics students
-Class Physics_Student:public Student
+class Physics_Student:public Student
 {
 	private:
 		string concentration;
@@ -148,6 +148,10 @@ Class Physics_Student:public Student
 			else
 				concentration = "?";
 		}
+		string getconcentration() const
+		{
+			return concentration;
+		}
 };
 //MAIN starts here
 int main()
@@ -159,6 +163,7 @@ int main()
 	{
 		astudents.push_back(new Art_Student);
 	}
+		//astudents and pstudents are built with setters using -> because they're pointers to our objects
 	astudents[0]->setname("John", "Doe");
 	astudents[0]->setgpa(3.5);
 	astudents[0]->setgrad(2030, "Spring");
@@ -243,14 +248,16 @@ int main()
 	}
 	//art students
 	outfile << "=============Art Students=============\n";
-	for(int i = 0; i < (int)astudents.size(); i++) //loop through all 5 students
+	for(int i = 0; i < (int)astudents.size(); i++) //loop through all 5 students in each vector and write with getter functiojs
 	{
+		//cout chains
 		outfile << astudents[i]->getfName() << " " << astudents[i]->getlName() << "\n" << "Emphasis: " << astudents[i]->getemphasis() << "\n" << "Status: " << (astudents[i]->getgrad() ? "Graduate" : "Undergraduate") << "\n" << "GPA: " << astudents[i]->getGPA() << "\n" << "Graduation: " << astudents[i]->getgradSem() << ", " << astudents[i]->getgradYr() << "\n" << "Enrolled: " << astudents[i]->getstartSem() << ", " << astudents[i]->getstartYr() << "\n\n";
 	}
 	//physics students
 	outfile << "=============Physics Students=============\n";
 	for(int i = 0; i < (int)pstudents.size(); i++) //loop through all 5 students
 	{
+		//physics student cout chains
 		outfile << pstudents[i]->getfName() << " " << pstudents[i]->getlName() << "\n" << "Concentration: " << pstudents[i]->getconcentration() << "\n" << "Status: " << (pstudents[i]->getgrad() ? "Graduate" : "Undergraduate") << "GPA: " << pstudents[i]->getGPA() << "\n" << "Graduation: " << pstudents[i]->getgradSem() << ", " << pstudents[i]->getgradYr() << "\n" << "Enrolled: " << pstudents[i]->getstartSem() << ", " << pstudents[i]->getstartYr() << "\n\n";
 	}
 
