@@ -100,4 +100,53 @@ Student::~Student()
 //Derived class for art students
 Class Art_Student:public Student
 {
+	private:
+		string emphasis;
+	public:
+		Art_Student()
+		{
+			emphasis = "?";
+		}
+		~Art_Student()
+		{
+			//again nothing, this memory goes back to heap. string emphasis manages itself. 
+		}
+		void setemphasis(string e)
+		{
+			if(e == "Art Studio" || e == "Art History" || e == "Art Education")
+			{
+				emphasis = e;
+			}
+			else
+				emphasis = "?";
+		}
+		string getemphasis() const
+		{
+			return emphasis;
+		}
+};
+//Derived class for physics students
+Class Physics_Student:public Student
+{
+	private:
+		string concentration;
+	public:
+		Physics_Student()
+		{
+			concentration = "?";
+		}
+		~Physics_Student()
+		{
+			//yet again, nothing to free here.
+		}
+		void setconcentration(string c)
+		{
+			if(c == "Biophysics" || c == "Earth and Planetary Sciences")
+			{
+				concentration = c;
+			}
+			else
+				concentration = "?";
+		}
+};
 
