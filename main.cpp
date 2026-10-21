@@ -199,43 +199,77 @@ int main()
 	{
 		pstudents.push_back(new Physics_Student);
 	}	
-	pstudents[0]->setname();
-	pstudents[0]->setgpa();
-	pstudents[0]->setgrad();
-	pstudents[0]->setstart();
-	pstudents[0]->setisgrad();
-	pstudents[0]->setconcentration();
+	pstudents[0]->setname("Any", "Man");
+	pstudents[0]->setgpa(3.85);
+	pstudents[0]->setgrad(2026, "Fall");
+	pstudents[0]->setstart(2022, "Fall");
+	pstudents[0]->setisgrad(false);
+	pstudents[0]->setconcentration("Biophysics");
 
-	pstudents[0]->setname();
-	pstudents[0]->setgpa();
-	pstudents[0]->setgrad();
-	pstudents[0]->setstart();
-	pstudents[0]->setisgrad();
-	pstudents[0]->setconcentration();
+	pstudents[1]->setname("Unknown", "Soldier");
+	pstudents[1]->setgpa(3.90);
+	pstudents[1]->setgrad(2027, "Winter");
+	pstudents[1]->setstart(2023, "Winter");
+	pstudents[1]->setisgrad(false);
+	pstudents[1]->setconcentration("Earth and Planetary Sciences");
 
-	pstudents[0]->setname();
-	pstudents[0]->setgpa();
-	pstudents[0]->setgrad();
-	pstudents[0]->setstart();
-	pstudents[0]->setisgrad();
-	pstudents[0]->setconcentration();
+	pstudents[2]->setname("Joe", "Blow");
+	pstudents[2]->setgpa(3.95);
+	pstudents[2]->setgrad(2028, "Spring");
+	pstudents[2]->setstart(2024, "Spring");
+	pstudents[2]->setisgrad(false);
+	pstudents[2]->setconcentration("Earth and Planetary Sciences");
 
-	pstudents[0]->setname();
-	pstudents[0]->setgpa();
-	pstudents[0]->setgrad();
-	pstudents[0]->setstart();
-	pstudents[0]->setisgrad();
-	pstudents[0]->setconcentration();
+	pstudents[3]->setname("Citizen", "X");
+	pstudents[3]->setgpa(4.0);
+	pstudents[3]->setgrad(2026, "Fall");
+	pstudents[3]->setstart(2016, "Fall");
+	pstudents[3]->setisgrad(true);
+	pstudents[3]->setconcentration("Biophysics");
 
-	pstudents[0]->setname();
-	pstudents[0]->setgpa();
-	pstudents[0]->setgrad();
-	pstudents[0]->setstart();
-	pstudents[0]->setisgrad();
-	pstudents[0]->setconcentration();
+	pstudents[4]->setname("GI", "Joe");
+	pstudents[4]->setgpa(4.2);
+	pstudents[4]->setgrad(2028, "Spring");
+	pstudents[4]->setstart(2020, "Spring");
+	pstudents[4]->setisgrad(true);
+	pstudents[4]->setconcentration("Earth and Planetary Sciences");
 
+	//file write, using ofstream instead of cout
+	ofstream outfile("student_info.dat");
+	if(!outfile) //if file can't be opened
+	{
+		cout << "Error: could not open student_info.dat.\n";
+		return 1; //classic error return
+	}
+	//art students
+	outfile << "=============Art Students=============\n";
+	for(int i = 0; i < (int)astudents.size(); i++) //loop through all 5 students
+	{
+		outfile << astudents[i]->getfName() << " " << astudents[i]->getlName() << "\n" << "Emphasis: " << astudents[i]->getemphasis() << "\n" << "Status: " << (astudents[i]->getgrad() ? "Graduate" : "Undergraduate") << "GPA: " << astudents[i]->getGPA() << "\n" << "Graduation: " << astudents[i]->getgradSem() << ", " << astudents[i]->getgradYr() << "\n" << "Enrolled: " << astudents[i]->getstartSem() << ", " << astudents[i]->getstartYr() << "\n\n";
+	}
+	//physics students
+	outfile << "=============Physics Students=============\n";
+	for(int i = 0; i < (int)pstudents.size(); i++) //loop through all 5 students
+	{
+		outfile << pstudents[i]->getfName() << " " << pstudents[i]->getlName() << "\n" << "Concentration: " << pstudents[i]->getconcentration() << "\n" << "Status: " << (pstudents[i]->getgrad() ? "Graduate" : "Undergraduate") << "GPA: " << pstudents[i]->getGPA() << "\n" << "Graduation: " << pstudents[i]->getgradSem() << ", " << pstudents[i]->getgradYr() << "\n" << "Enrolled: " << pstudents[i]->getstartSem() << ", " << pstudents[i]->getstartYr() << "\n\n";
+	}
 
+	outfile.close(); //close the file
+	//confirmation prompt
+	cout << "Wrote " << astudents.size() + pstudents.size() << "entries to student_info.dat.\n";
 
+	//Frees! one object created per student needs one deleted per student. 
+	for(int i = 0; i < (int)astudents.size(); i++)
+	{
+		delete astudents[i];
+	}
+	for(int i = 0; i < (int)pstudents.size(); i++)
+	{
+		delete pstudents[i];
+	}
+
+	return 0;
+}
 
 
 
