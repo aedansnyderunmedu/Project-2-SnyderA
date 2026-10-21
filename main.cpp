@@ -258,8 +258,8 @@ int main()
 	for(int i = 0; i < (int)pstudents.size(); i++) //loop through all 5 students
 	{
 		//physics student cout chains
-		outfile << pstudents[i]->getfName() << " " << pstudents[i]->getlName() << "\n" << "Concentration: " << pstudents[i]->getconcentration() << "\n" << "Status: " << (pstudents[i]->getgrad() ? "Graduate" : "Undergraduate") << "GPA: " << pstudents[i]->getGPA() << "\n" << "Graduation: " << pstudents[i]->getgradSem() << ", " << pstudents[i]->getgradYr() << "\n" << "Enrolled: " << pstudents[i]->getstartSem() << ", " << pstudents[i]->getstartYr() << "\n\n";
-	}
+		outfile << pstudents[i]->getfName() << " " << pstudents[i]->getlName() << "\n" << "Concentration: " << pstudents[i]->getconcentration() << "\n" << "Status: " << (pstudents[i]->getgrad() ? "Graduate" : "Undergraduate") << "\n" << "GPA: " << pstudents[i]->getGPA() << "\n" << "Graduation: " << pstudents[i]->getgradSem() << ", " << pstudents[i]->getgradYr() << "\n" << "Enrolled: " << pstudents[i]->getstartSem() << ", " << pstudents[i]->getstartYr() << "\n\n";
+	} //getgrad using ternary operator via get function true/false? = "" : ""
 
 	outfile.close(); //close the file
 	//confirmation prompt
