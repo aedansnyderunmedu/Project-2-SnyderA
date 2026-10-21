@@ -95,7 +95,7 @@ Student::Student()
 //DESTRUCTOR
 Student::~Student()
 {
-	//MAIN calls new and delete, not Student(). So destructor doesn't have anything to free. BUT...it's still here.
+	//Student() doesn't call new So destructor doesn't have anything to free. BUT...it's still here.
 }
 //Derived class for art students
 Class Art_Student:public Student
@@ -182,8 +182,8 @@ int main()
 
 	astudents[3]->setname("Tommy", "Atkins");
 	astudents[3]->setgpa(3.8);
-	astudents[3]->setgrad(2030, "Winter");
-	astudents[3]->setstart(2024, "Winter");
+	astudents[3]->setgrad(2030, "Spring");
+	astudents[3]->setstart(2024, "Summer");
 	astudents[3]->setisgrad(true);
 	astudents[3]->setemphasis("Art Education");
 
@@ -208,8 +208,8 @@ int main()
 
 	pstudents[1]->setname("Unknown", "Soldier");
 	pstudents[1]->setgpa(3.90);
-	pstudents[1]->setgrad(2027, "Winter");
-	pstudents[1]->setstart(2023, "Winter");
+	pstudents[1]->setgrad(2027, "Fall");
+	pstudents[1]->setstart(2023, "Summer");
 	pstudents[1]->setisgrad(false);
 	pstudents[1]->setconcentration("Earth and Planetary Sciences");
 
@@ -221,14 +221,14 @@ int main()
 	pstudents[2]->setconcentration("Earth and Planetary Sciences");
 
 	pstudents[3]->setname("Citizen", "X");
-	pstudents[3]->setgpa(4.0);
+	pstudents[3]->setgpa(3.98);
 	pstudents[3]->setgrad(2026, "Fall");
 	pstudents[3]->setstart(2016, "Fall");
 	pstudents[3]->setisgrad(true);
 	pstudents[3]->setconcentration("Biophysics");
 
 	pstudents[4]->setname("GI", "Joe");
-	pstudents[4]->setgpa(4.2);
+	pstudents[4]->setgpa(4.0);
 	pstudents[4]->setgrad(2028, "Spring");
 	pstudents[4]->setstart(2020, "Spring");
 	pstudents[4]->setisgrad(true);
@@ -245,7 +245,7 @@ int main()
 	outfile << "=============Art Students=============\n";
 	for(int i = 0; i < (int)astudents.size(); i++) //loop through all 5 students
 	{
-		outfile << astudents[i]->getfName() << " " << astudents[i]->getlName() << "\n" << "Emphasis: " << astudents[i]->getemphasis() << "\n" << "Status: " << (astudents[i]->getgrad() ? "Graduate" : "Undergraduate") << "GPA: " << astudents[i]->getGPA() << "\n" << "Graduation: " << astudents[i]->getgradSem() << ", " << astudents[i]->getgradYr() << "\n" << "Enrolled: " << astudents[i]->getstartSem() << ", " << astudents[i]->getstartYr() << "\n\n";
+		outfile << astudents[i]->getfName() << " " << astudents[i]->getlName() << "\n" << "Emphasis: " << astudents[i]->getemphasis() << "\n" << "Status: " << (astudents[i]->getgrad() ? "Graduate" : "Undergraduate") << "\n" << "GPA: " << astudents[i]->getGPA() << "\n" << "Graduation: " << astudents[i]->getgradSem() << ", " << astudents[i]->getgradYr() << "\n" << "Enrolled: " << astudents[i]->getstartSem() << ", " << astudents[i]->getstartYr() << "\n\n";
 	}
 	//physics students
 	outfile << "=============Physics Students=============\n";
@@ -256,7 +256,7 @@ int main()
 
 	outfile.close(); //close the file
 	//confirmation prompt
-	cout << "Wrote " << astudents.size() + pstudents.size() << "entries to student_info.dat.\n";
+	cout << "Wrote " << astudents.size() + pstudents.size() << " entries to student_info.dat.\n";
 
 	//Frees! one object created per student needs one deleted per student. 
 	for(int i = 0; i < (int)astudents.size(); i++)
